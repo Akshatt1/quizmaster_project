@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+
+{% block title %}
+CHAI AUR QUIZ
+{% endblock %}
+
+{% block content %} 
+<h1 style="margin-top:4px;text-align: center;">Hello Quiz Masters</h1>
+
+              
+<p style="margin-top:4px;text-align: center; font-size: 34px; color: aqua; border: 2;">
+    Hey my users here are some new quizzes to solve</p>
+
+{% for quiz in quizs %}
+<h2>{{ quiz.title }}</h2>
+<p>{{ quiz.data}}</p>
+<p>name: {{ quiz.name}}</p>
+<p>posted_at: {{ quiz.posted_at }}</p>
+{% if quiz.image %}
+            <img src="{{ quiz.photo.url }}" alt="quiz photo" class="img-fluid">
+        {% endif %}
+{% endfor %}
+<a href="{% url 'create' %}">Create a new quiz</a>
+{% endblock %}
+

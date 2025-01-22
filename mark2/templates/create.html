@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+Create quiz
+{% endblock %}
+
+{% block content %} 
+<p style="color: beige;font-size: 34px;text-align: center;">Create and post your quiz here </p>
+<h1>Create a new quiz</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit">Create Quiz</button>
+</form>       
+
+{% endblock %}
