@@ -8,18 +8,46 @@ CHAI AUR QUIZ
 <h1 style="margin-top:4px;text-align: center;">Hello Quiz Masters</h1>
 
               
-<p style="margin-top:4px;text-align: center; font-size: 34px; color: aqua; border: 2;">
+<p style="margin-top:4px;text-align: center; font-size: 34px; color: rgb(6, 8, 8); border: 5px snow; padding: 10px;">
     Hey my users here are some new quizzes to solve</p>
 
+<!-- Shows User info -->
+    {% if user.is_authenticated %}
+        <p style="font-size: 20px; font-weight: 1000;">Hello, {{ user.username }}! You are logged in.</p>
+    {% else %}
+        <p>You are not logged in.</p>
+    {% endif %}
+
+<!-- Quiz lists -->
 {% for quiz in quizs %}
-<h2>{{ quiz.title }}</h2>
-<p>{{ quiz.data}}</p>
-<p>name: {{ quiz.name}}</p>
-<p>posted_at: {{ quiz.posted_at }}</p>
-{% if quiz.image %}
-            <img src="{{ quiz.photo.url }}" alt="quiz photo" class="img-fluid">
-        {% endif %}
+<div style="background-color: beige; border: 4px solid #380505; padding: 25px; margin-bottom: 25px; width: 400px; display: inline-block;vertical-align: top; ">
+    <h2>{{ quiz.title }}</h2>
+    <p>{{ quiz.data }}</p>
+    <p>Name: {{ quiz.name }}</p>
+    <p>Posted At: {{ quiz.posted_at }}</p>
+    {% if quiz.image %}
+        <img src="{{ quiz.photo.url }}" alt="quiz photo" class="img-fluid" style="max-width: 100%; border: 1px solid #ccc;">
+    {% endif %}
+    <button type="button" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; cursor: pointer;">
+        Delete
+    </button>
+</div>
 {% endfor %}
-<a href="{% url 'create' %}">Create a new quiz</a>
+ 
+
+<!-- New quiz button -->
+<a href="{% url 'create' %}" style="vertical-align: bottom; ">Create a new quiz</a>
+
+<!-- Footer containing login and logout buttons -->
+<footer>
+    <p>&copy; 2025 My Website</p>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Logout</a> <!-- Logout link -->
+    {% else %}
+        <a href="{% url 'login' %}">Login</a> <!-- Login link if not logged in -->
+    {% endif %}
+</footer>
+
+
 {% endblock %}
 

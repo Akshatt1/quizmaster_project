@@ -30,6 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 APPEND_SLASH = False
+LOGIN_URL = '/login/'
 # Application definition
 
 INSTALLED_APPS = [
